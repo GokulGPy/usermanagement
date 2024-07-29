@@ -1,0 +1,13 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss build src/styles.css -o static/css/styles.css"
+  },
+  "dependencies": {
+    "tailwindcss": "^2.2.19",
+    "postcss": "^8.4.6",
+    "autoprefixer": "^10.4.14"
+  },
+  "devDependencies": {}
+}

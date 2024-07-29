@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block bodyContent %}
+<div class="flex justify-center items-center h-[800px] bg-gray-910/50" style="height: 800px;">
+    <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-lg transform transition-transform duration-500 ease-in-out scale-90 hover:scale-100">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-900">Login</h1>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="text-red-500 mb-4">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div>
+                <label for="id_username" class="block mb-2 text-sm font-medium text-gray-700">Your Email</label>
+                <input type="text" id="id_username" name="username" value="{{ form.username.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-transform duration-300 ease-in-out transform hover:scale-105"
+                    placeholder="name@domain.com" required />
+            </div>
+
+            <div>
+                <label for="id_password" class="block mb-2 text-sm font-medium text-gray-700">Your Password</label>
+                <input type="password" id="id_password" name="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-transform duration-300 ease-in-out transform hover:scale-105"
+                    required />
+            </div>
+
+            <div class="flex items-center mb-5">
+                <input id="remember" type="checkbox" name="remember"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 transition-transform duration-300 ease-in-out transform hover:scale-105" />
+                <label for="remember" class="ml-2 text-sm font-medium text-gray-700">Remember me</label>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center transition-transform duration-300 ease-in-out transform hover:scale-105">Login</button>
+        </form>
+
+        <p class="mt-4 text-sm text-center text-gray-600">
+            Don't have an account? <a href="{% url 'signup' %}" class="text-blue-600 hover:underline">Sign up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

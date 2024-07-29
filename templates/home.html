@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block bodyContent %}
+
+{% if user.is_authenticated %}
+<!-- Sidebar -->
+<div class="flex flex-row">
+    <div class="flex flex-col w-[20%] px-4 h-full bg-gray-300">
+        <a href="{% url 'home' %}" class="{% if request.path == '/' %}bg-blue-500 text-white{% endif %} px-4 py-2 rounded">
+            Dashboard
+        </a>
+        <a href="{% url 'profile' %}" class="{% if request.path == '/profile/' %}bg-blue-500 text-white{% endif %} px-4 py-2 rounded">
+            Profile
+        </a>
+        <a href="{% url 'settings' %}" class="{% if request.path == '/settings/' %}bg-blue-500 text-white{% endif %} px-4 py-2 rounded">
+            Settings
+        </a>
+    </div>
+    <div class="px-4 w-full">
+        {% block bodyContentHome %}
+        {% endblock %}
+    </div>
+</div>
+
+{% else %}
+<div class="text-center mt-10 bg-[#000]">
+    <h1 class="text-3xl font-bold text-black">Home</h1>
+</div>
+
+{% endif %}
+{% endblock %}
